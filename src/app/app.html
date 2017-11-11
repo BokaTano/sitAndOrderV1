@@ -1,0 +1,22 @@
+<ion-menu [content]="nav">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="onLoad(menuPage)">Menu</button>
+      <button ion-item (click)="onLoad(cuentaPage)">Tu Cuenta</button>
+      <button ion-item (click)="onLoad(historiaPage)">Historia</button>
+      <button ion-item (click)="onLoad(registrarPage)">Registrate</button>
+      <button ion-item (click)="onLoad(pedidosPage)">Pedidos</button>
+      <button ion-item (click)="onLoad(editMenuPage)">Edit Menu</button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="menuPage" #nav></ion-nav>

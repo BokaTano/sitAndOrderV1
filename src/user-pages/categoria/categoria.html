@@ -1,0 +1,33 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ categoria.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row
+      *ngFor="let plato of categoria.platos">
+      <ion-col col-1>
+        <ion-checkbox></ion-checkbox>
+      </ion-col>
+      <ion-col col-7 offset-1>
+        {{ plato.name}}
+        <br>
+        <ion-note>{{ plato.ingredients }}</ion-note>
+      </ion-col>
+      <ion-col col-2>
+        {{ plato.price}}€
+        <br>
+        {{ plato.rating}}
+        <ion-icon
+          *ngFor="let "
+          name="star"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
