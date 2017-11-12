@@ -11,9 +11,11 @@
 <ion-content padding>
   <ion-grid>
     <ion-row
-      *ngFor="let plato of categoria.platos">
+      *ngFor="let plato of categoria.platos, let i = index">
       <ion-col col-1>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox
+          [(ngModel)]="platoChecked[i]"
+          (ionChange)="updatePlatoChecked()"></ion-checkbox>
       </ion-col>
       <ion-col col-7 offset-1>
         {{ plato.name}}
@@ -30,3 +32,5 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<drawer [options]="drawerOptions"></drawer>

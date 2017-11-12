@@ -8,6 +8,10 @@ export class CategoriaService{
     return this.categorias.slice();
   }
 
+  getOneCategoria(index: number){
+    return this.categorias[index];
+  }
+
   removeCategoria(index: number){
     this.categorias.splice(index, 1);
   }
