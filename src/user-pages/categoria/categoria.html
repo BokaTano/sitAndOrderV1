@@ -15,7 +15,7 @@
       <ion-col col-1>
         <ion-checkbox
           [(ngModel)]="platoChecked[i]"
-          (ionChange)="updatePlatoChecked()"></ion-checkbox>
+          (ionChange)="updatePlatoChecked(i)"></ion-checkbox>
       </ion-col>
       <ion-col col-7 offset-1>
         {{ plato.name}}
@@ -29,8 +29,15 @@
         <ion-icon
           name="star"></ion-icon>
       </ion-col>
+      <ion-row *ngIf="platoChecked[i] == true">
+        <ion-item>
+          <ion-label color="primary" floating>comment</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <input type="text" name="comment">
+      </ion-row>
     </ion-row>
+
   </ion-grid>
 </ion-content>
 
-<drawer [options]="drawerOptions"></drawer>

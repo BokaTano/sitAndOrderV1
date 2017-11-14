@@ -1,4 +1,15 @@
+<ion-header text-center>
+  <h1>Pedido </h1>
+</ion-header>
 <ion-content>
-
+  <ion-note>primero plato</ion-note>
+  <ion-grid>
+    <ion-row *ngFor="let pedido of pedidos">
+      <ion-col>
+        <button ion-item>{{ categorias[pedido.categoria].name }} lolo</button>
+          <button>{{ categorias[0] }}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ng-content></ng-content>
 </ion-content>

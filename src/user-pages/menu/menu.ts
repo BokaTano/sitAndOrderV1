@@ -12,16 +12,8 @@ import {Plato} from "../../models/plato";
 })
 export class MenuPage {
   categorias: { name: string, icon: string, platos: Plato[]}[];
-  drawerOptions: any;
 
-  constructor(private navCtrl: NavController) {
-    this.drawerOptions = {
-      handleHeight: 50,
-      thresholdFromBottom: 200,
-      thresholdFromTop: 200,
-      bounceBack: true
-    };
-  }
+  constructor(private navCtrl: NavController) {}
 
   ionViewWillEnter(){
     this.categorias = platos;

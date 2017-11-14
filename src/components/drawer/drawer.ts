@@ -1,11 +1,15 @@
-import {Component, Input, ElementRef, Renderer2} from '@angular/core';
+import {Component, Input, ElementRef, Renderer2, OnInit} from '@angular/core';
 import { Platform, DomController } from 'ionic-angular';
+import {PedidosService} from "../../Services/pedidos";
+import {Pedido} from "../../models/pedido";
+import {Plato} from "../../models/plato";
+import platos from "../../data/platos";
 
 @Component({
   selector: 'drawer',
   templateUrl: 'drawer.html'
 })
-export class ContentDrawer {
+export class ContentDrawer implements OnInit{
 
   @Input('options') options: any;
 
@@ -14,9 +18,28 @@ export class ContentDrawer {
   thresholdTop: number = 200;
   thresholdBottom: number = 200;
 
-  constructor(public element: ElementRef, public renderer: Renderer2, public domCtrl: DomController, public platform: Platform) {
+  pedidos: Pedido[] = [];
+  categorias: { name: string, icon: string, platos: Plato[]}[];
+
+
+  constructor(public element: ElementRef,
+              public renderer: Renderer2,
+              public domCtrl: DomController,
+              public platform: Platform,
+              private pedidosService: PedidosService) {}
+
+  ngOnInit(){
+    this.pedidos = this.pedidosService.getPedidos();
 
   }
+
+  ionViewWillEnter(){
+    this.categorias = platos;
+    console.log("loaded new")
+  }
+
+
+
 
   ngAfterViewInit() {
 

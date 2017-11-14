@@ -21,6 +21,7 @@ export class MyApp {
   registrarPage = RegistrarPage;
   pedidosPage = PedidosPage;
   editMenuPage = EditMenuPage;
+  drawerOptions: any;
   @ViewChild('nav') nav: NavController;
 
   constructor(public platform: Platform,
@@ -28,6 +29,12 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private menuCtrl: MenuController) {
     this.initializeApp();
+    this.drawerOptions = {
+      handleHeight: 50,
+      thresholdFromBottom: 200,
+      thresholdFromTop: 200,
+      bounceBack: true
+    };
   }
 
   initializeApp() {

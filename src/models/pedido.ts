@@ -1,6 +1,6 @@
 export class Pedido{
-  constructor(public index: number,
-              public checked: boolean,
+  constructor(public plato: number,
+              public categoria: number,
               public comment: string,
               public orden: number){}
 }

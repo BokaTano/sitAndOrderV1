@@ -16,6 +16,7 @@ import {CategoriaPage} from "../user-pages/categoria/categoria";
 import {ContentDrawer} from "../components/drawer/drawer";
 import {PedidosPage} from "../restaurant-pages/pedidos/pedidos";
 import {EditMenuPage} from "../restaurant-pages/edit-menu/edit-menu";
+import {PedidosService} from "../Services/pedidos";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {EditMenuPage} from "../restaurant-pages/edit-menu/edit-menu";
     StatusBar,
     SplashScreen,
     CategoriaService,
+    PedidosService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
 
   ]

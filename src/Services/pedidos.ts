@@ -1,4 +1,5 @@
 import {Pedido} from "../models/pedido";
+import {ContentDrawer} from "../components/drawer/drawer";
 
 export class PedidosService{
   private pedidos: Pedido[] = [];
@@ -15,17 +16,17 @@ export class PedidosService{
     this.pedidos.splice(index, 1);
   }
 
-  addPedido(index: number,
-            checked: boolean,
-            comment: string,
+  addPedido(comment: string,
+            categoria: number,
             orden: number){
-    this.pedidos.push(new Pedido(index, checked, comment, orden));
+    this.pedidos.push(new Pedido(this.pedidos.length, categoria, comment, orden));
+    console.log("pedido added" + this.pedidos.length + categoria + comment + orden);
   }
 
   updatePedidos(index: number,
-                checked: boolean,
                 comment: string,
+                categoria: number,
                 orden: number){
-    this.pedidos[index] = new Pedido(index, checked, comment, orden);
+    this.pedidos[index] = new Pedido(index, categoria, comment, orden);
   }
 }
