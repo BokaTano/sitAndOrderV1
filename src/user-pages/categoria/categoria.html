@@ -30,14 +30,28 @@
           name="star"></ion-icon>
       </ion-col>
       <ion-row *ngIf="platoChecked[i] == true">
-        <ion-item>
-          <ion-label color="primary" floating>comment</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-        <input type="text" name="comment">
+        <form #f="ngForm" (ngSubmit)="onComment(f, i)">
+          <ion-col col-10>
+            <ion-item>
+              <ion-input
+                max="150"
+                placeholder="Quieres comentar algo para el cocinero?.."
+                name="comment"
+                ngModel
+                required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button
+                    type="submit"
+                    [disabled]="!f.valid"
+                    outline
+                    icon-only><ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </ion-col>
+        </form>
       </ion-row>
     </ion-row>
-
   </ion-grid>
 </ion-content>
 

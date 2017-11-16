@@ -1,5 +1,5 @@
 ///<reference path="../../node_modules/ionic-angular/navigation/nav-controller.d.ts"/>
-import { Component, ViewChild } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { MenuController, NavController, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,6 +37,11 @@ export class MyApp {
     };
   }
 
+  onLoad(page: any){
+    this.nav.setRoot(page);
+    this.menuCtrl.close();
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -44,10 +49,5 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
-
-  onLoad(page: any){
-    this.nav.setRoot(page);
-    this.menuCtrl.close();
   }
 }

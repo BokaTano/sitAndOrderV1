@@ -1,9 +1,9 @@
 import {Component, Input, ElementRef, Renderer2, OnInit} from '@angular/core';
-import { Platform, DomController } from 'ionic-angular';
-import {PedidosService} from "../../Services/pedidos";
+import {Platform, DomController, Events} from 'ionic-angular';
 import {Pedido} from "../../models/pedido";
-import {Plato} from "../../models/plato";
 import platos from "../../data/platos";
+import {PedidosService} from "../../Services/pedidos";
+import {Categoria} from "../../models/categoria";
 
 @Component({
   selector: 'drawer',
@@ -18,27 +18,27 @@ export class ContentDrawer implements OnInit{
   thresholdTop: number = 200;
   thresholdBottom: number = 200;
 
+  categorias: Categoria[] = [];
   pedidos: Pedido[] = [];
-  categorias: { name: string, icon: string, platos: Plato[]}[];
+  platoEdit: any;
 
 
   constructor(public element: ElementRef,
               public renderer: Renderer2,
               public domCtrl: DomController,
               public platform: Platform,
-              private pedidosService: PedidosService) {}
+              public events: Events,
+              public pedidoService: PedidosService) {
+
+    this.events.subscribe('pedidos:updated',() => {
+      this.pedidos = pedidoService.getPedidos();
+    });
+
+  }
 
   ngOnInit(){
-    this.pedidos = this.pedidosService.getPedidos();
-
-  }
-
-  ionViewWillEnter(){
     this.categorias = platos;
-    console.log("loaded new")
   }
-
-
 
 
   ngAfterViewInit() {
