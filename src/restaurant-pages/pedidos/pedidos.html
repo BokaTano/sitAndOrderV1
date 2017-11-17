@@ -14,4 +14,46 @@
 
 <ion-content padding>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1>
+        <h3>Mesa</h3>
+      </ion-col>
+      <ion-col col-1>
+        <h3>#</h3>
+      </ion-col>
+      <ion-col col-4>
+        <h3>Pedidos</h3>
+      </ion-col>
+      <ion-col col-4>
+        <h3>Comentarios</h3>
+      </ion-col>
+      <ion-col col-2>
+        <h3>Estados</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <div *ngFor="let pedido of pedidos">
+      <ion-row *ngIf="pedido.estados[0]">
+        <ion-col col-1>
+          Mesa
+        </ion-col>
+        <ion-col col-1>
+          #
+        </ion-col>
+        <ion-col col-4>
+          {{ platos[pedido.categoria].name }}
+        </ion-col>
+        <ion-col col-4>
+          {{ pedido.comment }}
+        </ion-col>
+        <ion-col col-2>
+          Estados
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
 </ion-content>

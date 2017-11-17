@@ -13,15 +13,20 @@ export class CategoriaPage implements OnInit{
   categoria: Categoria;
   categoriaIndex: number;
   platoChecked : any;
+  starIndexArray: [0,1,2,3,4];
 
   constructor(private navParams: NavParams,
               private pedidosService: PedidosService,
-              public events: Events){}
+              public events: Events){
+    this.events.subscribe('pedidos:updated',() => {
+      this.platoChecked = pedidosService.getCheckedPlatos(this.categoriaIndex, this.categoria.platos.length);
+    });
+  }
 
   ngOnInit(){
     this.categoria = this.navParams.get('categoria');
     this.categoriaIndex = this.navParams.get('index');
-    this.platoChecked = new Array(this.categoria.platos.length)
+    this.platoChecked = this.pedidosService.getCheckedPlatos(this.categoriaIndex, this.categoria.platos.length);
   }
 
   updatePlatoChecked(index: number){
@@ -34,6 +39,6 @@ export class CategoriaPage implements OnInit{
     }
   }
   onComment(form: NgForm, index: number){
-    this.pedidosService.updatePedidos(index ,this.categoriaIndex, form.value.comment,0);
+    this.pedidosService.updatePedidos(index ,this.categoriaIndex, form.value.comment,0, this.pedidosService.getPedidos()[index].estados);
   }
 }

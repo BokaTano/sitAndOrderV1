@@ -1,25 +1,24 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PedidosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component, OnInit} from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+import {Categoria} from "../../models/categoria";
+import {Pedido} from "../../models/pedido";
+import {PedidosService} from "../../Services/pedidos";
+import platos from "../../data/platos";
 
 @IonicPage()
 @Component({
   selector: 'page-pedidos',
   templateUrl: 'pedidos.html',
 })
-export class PedidosPage {
+export class PedidosPage implements OnInit{
+  pedidos: Pedido[] =[];
+  platos: Categoria[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(private pedidosService: PedidosService){}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PedidosPage');
+  ngOnInit(){
+    this.pedidos = this.pedidosService.getPedidos();
+    this.platos = platos;
   }
 
 }

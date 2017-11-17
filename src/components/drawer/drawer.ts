@@ -4,6 +4,7 @@ import {Pedido} from "../../models/pedido";
 import platos from "../../data/platos";
 import {PedidosService} from "../../Services/pedidos";
 import {Categoria} from "../../models/categoria";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'drawer',
@@ -20,7 +21,8 @@ export class ContentDrawer implements OnInit{
 
   categorias: Categoria[] = [];
   pedidos: Pedido[] = [];
-  platoEdit: any;
+  platoEdit: boolean[];
+
 
 
   constructor(public element: ElementRef,
@@ -28,18 +30,39 @@ export class ContentDrawer implements OnInit{
               public domCtrl: DomController,
               public platform: Platform,
               public events: Events,
-              public pedidoService: PedidosService) {
+              public pedidosService: PedidosService) {
 
     this.events.subscribe('pedidos:updated',() => {
-      this.pedidos = pedidoService.getPedidos();
+      this.categorias = platos;
+      this.pedidos = pedidosService.getPedidos();
     });
 
   }
 
   ngOnInit(){
     this.categorias = platos;
+    this.platoEdit = new Array(this.pedidos.length);
   }
 
+  onEdit(index: number){
+    this.platoEdit[index] = true;
+  }
+
+  onComment(form: NgForm, index: number){
+    this.pedidosService.updatePedidos(index ,this.pedidos[index].categoria, form.value.comment,0, this.pedidosService.getPedidos()[index].estados);
+  }
+
+  onDelete(index: number){
+    this.pedidosService.removePedido(index);
+    this.events.publish('pedidos:updated');
+  }
+
+  onSendPedidos(){
+    this.pedidosService.getPedidos().forEach((pedido) => {
+      pedido.estados[0] = true;
+      console.log(pedido.estados[0], pedido.plato);
+    })
+  }
 
   ngAfterViewInit() {
 
